@@ -1,0 +1,2 @@
+cmdhistory=["asdf" "(hello \\"betty\\")" "helloworld" ";; Loading file /home/siva/workspace/Sample/src/Sample/core.clj" ";; Switching to Sample.core namespace" "(clojure.core/in-ns 'Sample.core)" "(hello \\"betty\\")"]
+eclipse.preferences.version=1
