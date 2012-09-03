@@ -1,0 +1,176 @@
+(def schema
+	[
+	 ;; HDD Access Terminology Content version 1
+	
+	 ;; CONCEPT Entity
+	 
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept/ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/index true
+	  :db/doc "CONCEPT.NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept/cid
+	  :db/valueType :db.type/string
+	  :db/cardinality :db.cardinality/one
+	  :db/fulltext true
+	  :db/doc "CONCEPT.CID VARCHAR(250 BYTE)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept/status_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "CONCEPT.NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept/superceded_by_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "CONCEPT.NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept/enterprise_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "CONCEPT.NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept/comments
+	  :db/valueType :db.type/string
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "CONCEPT.NCID CHAR(1 BYTE)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept/schema_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "CONCEPT.NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	    
+	 ;; CONCEPT_RELATION entity
+	 
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept_relation/concept_relation_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "CONCEPT_RELATION.CONCEPT_RELATION_NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept_relation/relationship_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "CONCEPT_RELATION.RELATIONSHIP_NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept_relation/concept_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "CONCEPT_RELATION.CONCEPT_NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept_relation/enterprise_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "CONCEPT_RELATION.ENTERPRISE_NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept_relation/concept_relation_id
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "CONCEPT_RELATION.CONCEPT_RELATION_ID NUMBER(22,0)"
+	  :db.install/_attribute :db.part/db}
+	 
+	 ;; RSFORM Entity
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :rsform/rsform_id
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "RSFORM.RSFORM_ID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :rsform/ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "RSFORM.NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :rsform/representation
+	  :db/valueType :db.type/string
+	  :db/cardinality :db.cardinality/one
+	  :db/fulltext true
+	  :db/doc "RSFORM.REPRESENTATION VARCHAR(700 BYTE)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :rsform/enterprise_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/doc "RSFORM.ENTERPRISE_NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	  
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :rsform/up_representation
+	  :db/valueType :db.type/string
+	  :db/cardinality :db.cardinality/one
+	  :db/fulltext true
+	  :db/doc "RSFORM.UP_REPRESENTATION VARCHAR(700 BYTE)"
+	  :db.install/_attribute :db.part/db}
+	  
+	 ;; RSFORM_CONTEXT Entity
+	 
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :rsform_context/rsform_id
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/index true
+	  :db/doc "RSFORM_CONTEXT.RSFORM_ID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	 
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :rsform_context/context_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/index true
+	  :db/doc "RSFORM_CONTEXT.CONTEXT_NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :rsform_context/preferred_score
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/index true
+	  :db/doc "RSFORM_CONTEXT.PREFERRED_SCORE NUMBER(3,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :rsform_context/enterprise_ncid
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/index true
+	  :db/doc "RSFORM_CONTEXT.ENTERPRISE_NCID NUMBER(20,0)"
+	  :db.install/_attribute :db.part/db}
+	
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :rsform_context/rsform_context_id
+	  :db/valueType :db.type/bigint
+	  :db/cardinality :db.cardinality/one
+	  :db/index true
+	  :db/doc "RSFORM_CONTEXT.RSFORM_CONTEXT_ID NUMBER(22,0)"
+	  :db.install/_attribute :db.part/db}
+	   
+	 ])
