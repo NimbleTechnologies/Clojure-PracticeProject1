@@ -7,5 +7,5 @@
   :dependencies [
                  [org.clojure/clojure "1.4.0"]
                  [org.clojure/data.csv "0.1.2"]
-                 [com.datomic/datomic-free "0.8.3397"]])
+                 [com.datomic/datomic-free "0.8.3479"]])
 
