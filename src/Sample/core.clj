@@ -27,19 +27,21 @@
 
 (println "loading data..");
 
+(defn makeconcept [[ncid cid status_ncid superceded_by_ncid enterprise_ncid concept_definition comments schema_ncid]]
+  {:concept/ncid ncid,
+            :concept/cid cid,
+            :concept/status_ncid status_ncid,
+            :concept/superceded_by_ncid superceded_by_ncid,
+            :concept/enterprise_ncid enterprise_ncid,
+            :concept/concept_definition concept_definition,
+            :concept/comments comments,
+            :concept/schema_ncid schema_ncid,
+            :db/id #db/id[:db.part/db -1000003]}
+  )
+
 (with-open [in-file (io/reader "data/concept.csv")]
-  (doall
-    (let [records (csv/read-csv in-file)]
-      (for [onerecord records]
-        (d/transact conn 
-          [{:concept/ncid (nth onerecord 0),
-            :concept/cid (nth onerecord 1),
-            :concept/status_ncid (nth onerecord 2),
-            :concept/superceded_by_ncid (nth onerecord 3),
-            :concept/enterprise_ncid (nth onerecord 4),
-            :concept/concept_definition (nth onerecord 5),
-            :concept/comments (nth onerecord 6),
-            :concept/schema_ncid (nth onerecord 7),
-            :db/id #db/id[:db.part/db -1000003]}])))))
+  (d/transact conn 
+         (doall (map makeconcept (csv/read-csv in-file))))
+)
 
 (println "done loading..");
