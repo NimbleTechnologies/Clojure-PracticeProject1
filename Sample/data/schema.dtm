@@ -1,4 +1,3 @@
-(def schema
 	[
 	 ;; HDD Access Terminology Content version 1
 	
@@ -6,7 +5,7 @@
 	 
 	 {:db/id #db/id[:db.part/db]
 	  :db/ident :concept/ncid
-	  :db/valueType :db.type/bigint
+	  :db/valueType :db.type/long
 	  :db/cardinality :db.cardinality/one
 	  :db/index true
 	  :db/doc "CONCEPT.NCID NUMBER(20,0)"
@@ -19,24 +18,32 @@
 	  :db/fulltext true
 	  :db/doc "CONCEPT.CID VARCHAR(250 BYTE)"
 	  :db.install/_attribute :db.part/db}
-	
+	  
+	 {:db/id #db/id[:db.part/db]
+	  :db/ident :concept/concept_definition
+	  :db/valueType :db.type/string
+	  :db/cardinality :db.cardinality/one
+	  :db/fulltext true
+	  :db/doc "CONCEPT.CID VARCHAR(250 BYTE)"
+	  :db.install/_attribute :db.part/db}
+	  	
 	 {:db/id #db/id[:db.part/db]
 	  :db/ident :concept/status_ncid
-	  :db/valueType :db.type/bigint
+	  :db/valueType :db.type/long
 	  :db/cardinality :db.cardinality/one
 	  :db/doc "CONCEPT.NCID NUMBER(20,0)"
 	  :db.install/_attribute :db.part/db}
 	
 	 {:db/id #db/id[:db.part/db]
 	  :db/ident :concept/superceded_by_ncid
-	  :db/valueType :db.type/bigint
+	  :db/valueType :db.type/long
 	  :db/cardinality :db.cardinality/one
 	  :db/doc "CONCEPT.NCID NUMBER(20,0)"
 	  :db.install/_attribute :db.part/db}
 	
 	 {:db/id #db/id[:db.part/db]
 	  :db/ident :concept/enterprise_ncid
-	  :db/valueType :db.type/bigint
+	  :db/valueType :db.type/long
 	  :db/cardinality :db.cardinality/one
 	  :db/doc "CONCEPT.NCID NUMBER(20,0)"
 	  :db.install/_attribute :db.part/db}
@@ -173,4 +180,4 @@
 	  :db/doc "RSFORM_CONTEXT.RSFORM_CONTEXT_ID NUMBER(22,0)"
 	  :db.install/_attribute :db.part/db}
 	   
-	 ])
+	 ]
