@@ -27,16 +27,20 @@
 
 (println "loading data..");
 
+(defn parse-int [str]
+  (try (Integer/parseInt str)
+    (catch NumberFormatException nfe 0)))                    
+
 (defn makeconcept [[ncid cid status_ncid superceded_by_ncid enterprise_ncid concept_definition comments schema_ncid]]
-  {:concept/ncid ncid,
-            :concept/cid cid,
-            :concept/status_ncid status_ncid,
-            :concept/superceded_by_ncid superceded_by_ncid,
-            :concept/enterprise_ncid enterprise_ncid,
-            :concept/concept_definition concept_definition,
-            :concept/comments comments,
-            :concept/schema_ncid schema_ncid,
-            :db/id #db/id[:db.part/db -1000003]}
+  {:concept/ncid (parse-int ncid),
+   :concept/cid cid,
+   :concept/status_ncid (parse-int status_ncid),
+   :concept/superceded_by_ncid (parse-int superceded_by_ncid),
+   :concept/enterprise_ncid (parse-int enterprise_ncid),
+   :concept/concept_definition concept_definition,
+   :concept/schema_ncid (parse-int schema_ncid),
+   :concept/comments comments,
+   :db/id #db/id[:db.part/user -1]}
   )
 
 (with-open [in-file (io/reader "data/concept.csv")]

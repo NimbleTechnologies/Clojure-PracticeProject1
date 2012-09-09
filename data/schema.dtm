@@ -57,7 +57,7 @@
 	
 	 {:db/id #db/id[:db.part/db]
 	  :db/ident :concept/schema_ncid
-	  :db/valueType :db.type/bigint
+	  :db/valueType :db.type/long
 	  :db/cardinality :db.cardinality/one
 	  :db/doc "CONCEPT.NCID NUMBER(20,0)"
 	  :db.install/_attribute :db.part/db}
