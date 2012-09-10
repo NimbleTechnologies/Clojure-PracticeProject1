@@ -6,8 +6,7 @@
             (html5
               [:head
                [:title "Nimble Web"]
-               (include-css "/css/reset.css")]
+               (include-css "/css/default.css")]
               [:body
                [:div#wrapper
                 content]]))
-
