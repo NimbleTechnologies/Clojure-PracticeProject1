@@ -82,16 +82,71 @@
               (doall (map makeconceptrelation (csv/read-csv in-file))))
   )
 
+; TODO: find a way to split the file dynamically into pieces and 
+; and load each of the data iteratively
+; we are getting out of memory exceptions while trying to load the full data at once.
+
 (println "loading rsform data..");
 
-(with-open [in-file (io/reader "data/rsform.csv")]
+(with-open [in-file (io/reader "data/rsform1.csv")]
   (d/transact-async conn
               (doall (map makersform (csv/read-csv in-file))))
   )
 
+(println "rsform1 done..");
+
+(with-open [in-file (io/reader "data/rsform2.csv")]
+  (d/transact-async conn
+              (doall (map makersform (csv/read-csv in-file))))
+  )
+
+(println "rsform2 done..");
+
+(with-open [in-file (io/reader "data/rsform3.csv")]
+  (d/transact-async conn
+              (doall (map makersform (csv/read-csv in-file))))
+  )
+
+(println "rsform3 done..");
+
+(with-open [in-file (io/reader "data/rsform4.csv")]
+  (d/transact-async conn
+              (doall (map makersform (csv/read-csv in-file))))
+  )
+
+(println "rsform4 done..");
+
+(with-open [in-file (io/reader "data/rsform5.csv")]
+  (d/transact-async conn
+              (doall (map makersform (csv/read-csv in-file))))
+  )
+
+(println "rsform5 done..");
+
 (println "loading rsform context data..")
 
-(with-open [in-file (io/reader "data/rsform_context.csv")]
+(with-open [in-file (io/reader "data/rsform_context1.csv")]
+  (d/transact-async conn
+              (doall (map makersformcontext (csv/read-csv in-file))))
+  )
+
+(println "rsform_context1 done..");
+
+(with-open [in-file (io/reader "data/rsform_context2.csv")]
+  (d/transact-async conn
+              (doall (map makersformcontext (csv/read-csv in-file))))
+  )
+
+(println "rsform_context2 done..");
+
+(with-open [in-file (io/reader "data/rsform_context3.csv")]
+  (d/transact-async conn
+              (doall (map makersformcontext (csv/read-csv in-file))))
+  )
+
+(println "rsform_context3 done..");
+
+(with-open [in-file (io/reader "data/rsform_context4.csv")]
   (d/transact-async conn
               (doall (map makersformcontext (csv/read-csv in-file))))
   )
