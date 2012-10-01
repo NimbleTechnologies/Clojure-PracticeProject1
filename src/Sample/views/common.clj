@@ -1,6 +1,10 @@
 (ns Sample.views.common
-  (:use [noir.core :only [defpartial]]
-        [hiccup.page :only [include-css html5]]))
+  (:use [noir.core]
+        [hiccup.page :only [include-css html5]]
+        [hiccup.form]))
+
+(require '[noir.validation :as vali])
+(require '[noir.response :as resp])
 
 (defpartial layout [& content]
             (html5
