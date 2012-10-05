@@ -6,10 +6,8 @@
 
 (use '[datomic.api :only [q db] :as d])
 (use 'clojure.pprint)
-
-(def uri "datomic:free://localhost:4334//hdd")
-
-(def conn (d/connect uri))
+(use 'Sample.database)
+(use 'Sample.query)
 
 (defpage "/welcome" []
          (common/layout
@@ -40,8 +38,12 @@
 (defn valid? [{:keys [searchstr context_ncid]}]
   true)
 
+(defn searchncid [{:keys [searchstr context_ncid]}]
+  :context_ncid)
+
 (defpage [:post "/search"] {:as searchterms}
   (if (valid? searchterms)
     (common/layout
-      [:p "On Search!"])    
+      [:p (search-concept "asdf" 248)])    
     (render "/search" searchterms)))
+
