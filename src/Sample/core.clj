@@ -14,11 +14,20 @@
 (use 'clojure.pprint)
 
 (def uri "datomic:free://localhost:4334//hdd")
+;(def uri "datomic:free://?jdbc:postgresql://localhost:5432/datomic?user=datomic&password=datomic")
 
 (d/delete-database uri)
 (d/create-database uri)
 
 (def conn (d/connect uri))
+
+; create partitions to store the data
+(def part
+  [{:db/id (d/tempid :db.part/db)
+    :db/ident :hdd
+    :db.install/_partition :db.part/db}])
+
+(d/transact conn part)
 
 (def schema-tx (read-string (slurp "data/schema.dtm")))
 (println "schema-tx:")
@@ -38,7 +47,7 @@
    :concept/concept_definition concept_definition,
    :concept/schema_ncid (parse-int schema_ncid),
    :concept/comments comments,
-   :db/id #db/id[:db.part/user -1]}
+   :db/id (d/tempid :hdd)}
   )
 
 (defn makeconceptrelation [[concept_relation_ncid relationship_ncid concept_ncid enterprise_ncid concept_relation_id]]
@@ -47,7 +56,7 @@
    :concept_relation/concept_ncid (parse-int concept_ncid),
    :concept_relation/enterprise_ncid (parse-int enterprise_ncid),
    :concept_relation/concept_relation_id (parse-int concept_relation_id),
-   :db/id #db/id[:db.part/user -2]}
+   :db/id (d/tempid :hdd)}
   )
 
 (defn makersform [[rsform_id ncid representation enterprise_ncid up_representation]]
@@ -56,7 +65,7 @@
    :rsform/representation representation,
    :rsform/enterprise_ncid (parse-int enterprise_ncid),
    :rsform/up_representation up_representation,
-   :db/id #db/id[:db.part/user -3]}
+   :db/id (d/tempid :hdd)}
   )
 
 (defn makersformcontext [[rsform_id context_ncid preferred_score enterprise_ncid rsform_context_id]]
@@ -65,7 +74,7 @@
    :rsform_context/preferred_score (parse-int preferred_score),
    :rsform_context/enterprise_ncid (parse-int enterprise_ncid),
    :rsform_context/rsform_context_id (parse-int rsform_context_id),
-   :db/id #db/id[:db.part/user -4]}
+   :db/id (d/tempid :hdd)}
   )
 
 (println "loading concept data..");
