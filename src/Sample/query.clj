@@ -5,12 +5,17 @@
 (use 'clojure.pprint)
 
 (defn search-concept [str concept_ncid]
-    (q '[:find ?n :in $ ?concept_ncid :where [?n :concept_relation/concept_ncid ?b][(= ?b ?concept_ncid)]] (db conn) concept_ncid))
+    (q '[:find ?n :in $ ?concept_ncid 
+         :where [?n :concept_relation/concept_ncid ?b][(= ?b ?concept_ncid)]] 
+       (db conn) concept_ncid))
 
 ; get parent of a concept. the one which has a 'Has-Child' relationship
 (defn get-parent [concept_id]
-           (q '[:find ?a :in $ ?concept_id :where [?n :concept_relation/concept_ncid ?concept_id][?n :concept_relation/relationship_ncid 364]
-                [?n :concept_relation/concept_relation_ncid ?a]](db conn) concept_id))
+  (q '[:find ?a :in $ ?concept_id 
+       :where [?n :concept_relation/concept_ncid ?concept_id]
+       [?n :concept_relation/relationship_ncid 364]
+       [?n :concept_relation/concept_relation_ncid ?a]]
+     (db conn) concept_id))
 
 ; get all parents of a concept
 (defn get-all-parents [n]
@@ -29,7 +34,14 @@
 
 ; getting the history of a particular concept change (cid for now)
 (defn all-history-ncid [db ncid]
-  (q '[:find ?a :in $ ?ncid :where [?e :concept/cid ?a][?e :concept/ncid ?ncid]](d/history db) ncid));
+  (q '[:find ?a :in $ ?ncid :where [?e :concept/cid ?a]
+       [?e :concept/ncid ?ncid]](d/history db) ncid));
+
+; getting all representations of a concept with prefered score of 0
+(defn get-all-prefered-representations [ncid]
+  (q '[:find ?b :in $ ?ncid :where [?n :rsform/ncid ?ncid][?n :rsform/rsform_id ?l]
+        [?m :rsform_context/preferred_score 0][?m :rsform_context/rsform_id ?l]
+        [?n :rsform/representation ?b]](db conn) ncid))
 
 ; -------------------------------------
 ; utility helpers for testing
